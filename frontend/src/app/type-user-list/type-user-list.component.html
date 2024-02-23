@@ -1,0 +1,21 @@
+<!-- type-user-list.component.html -->
+<table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>User Type</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let userType of userTypes">
+        <td>{{ userType.id }}</td>
+        <td>{{ userType.type }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteUserType(userType.id)">Delete</button>
+          <button class="btn btn-primary" (click)="editUserType(userType.id)">Edit</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
