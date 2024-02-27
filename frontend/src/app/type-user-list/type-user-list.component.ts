@@ -1,6 +1,6 @@
-// type-user-list.component.ts
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
+import { UsertypeService } from '../Services/usertype.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-type-user-list',
@@ -10,27 +10,21 @@ import { UserService } from '../user.service';
 export class TypeUserListComponent implements OnInit {
   userTypes: any[] = [];
 
-  constructor(private userService: UserService) {}
+  constructor(private userTypeService : UsertypeService,private router: Router) {}
 
   ngOnInit() {
-    this.userService.getUserTypes()
-      .subscribe(userTypes => {
-        this.userTypes = userTypes;
-      });
+    this.userTypes = this.userTypeService.getUserTypes()
   }
 
   deleteUserType(id: number) {
-    this.userService.deleteUserType(id)
-      .subscribe(() => {
-        // Refresh userTypes after deletion
-        this.userTypes = this.userTypes.filter(userType => userType.id !== id);
-      }, error => {
-        console.error('Error deleting user type:', error);
-      });
+    this.userTypeService.removeType(id);
+    this.userTypes = this.userTypeService.getUserTypes()
   }
 
   editUserType(id: number) {
-    // Implement edit functionality
+  }
+
+  goToAddUserType(){
+    this.router.navigate(['/add-type']);
   }
 }
-

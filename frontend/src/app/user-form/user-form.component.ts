@@ -1,32 +1,21 @@
-// user-form.component.ts
 import { Component } from '@angular/core';
-import { UserService } from '../user.service';
+import { User } from '../model/User/user';
+import { UserService } from '../Services/user.service';
 
 @Component({
-  selector: 'app-user-form',
+  selector: 'user-form',
   templateUrl: './user-form.component.html',
   styleUrls: ['./user-form.component.css']
 })
 export class UserFormComponent {
-  user: any = { firstName: '', lastName: '', userType: '' };
-  userTypes: any[] = [];
+  user: User = { id: 0, firstName: '', lastName: '', userType: '' };
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) { }
 
-  ngOnInit() {
-    this.userService.getUserTypes()
-      .subscribe(userTypes => {
-        this.userTypes = userTypes;
-      });
-  }
-
-  onSubmit() {
-    this.userService.addUser(this.user)
-      .subscribe(response => {
-        // Handle response as needed
-        console.log('User added successfully:', response);
-      }, error => {
-        console.error('Error adding user:', error);
-      });
+  addUser(): void {
+    if (this.user.firstName && this.user.lastName && this.user.userType) {
+      this.userService.addUser(this.user);
+      this.user = { id: 0, firstName: '', lastName: '', userType: '' };
+    }
   }
 }

@@ -1,9 +1,12 @@
-<!-- type-user-form.component.html -->
-<form (ngSubmit)="onSubmit()">
+<div class="header">
+  <h2>Add/Edit and user</h2>
+</div>
+<div class="formbody">
+  <form (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="userType">User Type:</label>
-      <input type="text" class="form-control" id="userType" name="userType" [(ngModel)]="userType">
+      <input type="text" placeholder="UserType" class="form-control" id="userType" name="userType" [(ngModel)]="userType">
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
-  
+</div>
+

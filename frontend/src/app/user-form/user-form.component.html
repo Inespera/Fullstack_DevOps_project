@@ -1,19 +1,13 @@
-<!-- user-form.component.html -->
-<form (ngSubmit)="onSubmit()">
-    <div class="form-group">
-      <label for="firstName">First Name:</label>
-      <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="user.firstName">
-    </div>
-    <div class="form-group">
-      <label for="lastName">Last Name:</label>
-      <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="user.lastName">
-    </div>
-    <div class="form-group">
-      <label for="userType">User Type:</label>
-      <select class="form-control" id="userType" name="userType" [(ngModel)]="user.userType">
-        <option *ngFor="let userType of userTypes" [value]="userType.id">{{ userType.type }}</option>
-      </select>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+<div class="header">
+  <h2>Add/Edit and user</h2>
+</div>
+<div class="formbody">
+  <form (ngSubmit)="addUser()">
+    <input type="text" placeholder="First Name" id="firstName" [(ngModel)]="user.firstName" name="firstName" required><br>
+    <input type="text" placeholder="Last Name" id="lastName" [(ngModel)]="user.lastName" name="lastName" required><br>
+    <input type="text" placeholder="User Type" id="userType" [(ngModel)]="user.userType" name="userType" required><br>
+    <button type="submit">Create</button>
   </form>
-  
+</div>
+
+

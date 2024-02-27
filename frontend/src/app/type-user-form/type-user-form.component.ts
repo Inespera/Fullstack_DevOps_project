@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { UserService } from '../user.service';
-
+import { UsertypeService } from '../Services/usertype.service';
 
 @Component({
   selector: 'app-type-user-form',
@@ -10,15 +9,12 @@ import { UserService } from '../user.service';
 export class TypeUserFormComponent {
   userType: string = '';
 
-  constructor(private userService: UserService) {}
+  constructor(private userTypeService: UsertypeService) {}
 
-  onSubmit() {
-    this.userService.addUserType(this.userType)
-      .subscribe(response => {
-        // Handle response as needed
-        console.log('User type added successfully:', response);
-      }, error => {
-        console.error('Error adding user type:', error);
-      });
+  onSubmit():void {
+    if(this.userType){
+      this.userTypeService.addType(this.userType);
+      this.userType = '';
+    }
   }
 }

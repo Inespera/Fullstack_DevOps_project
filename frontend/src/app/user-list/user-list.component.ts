@@ -1,36 +1,28 @@
-// user-list.component.ts
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user.service';
+import { User } from '../model/User/user';
+import { UserService } from '../Services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-user-list',
+  selector: 'user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  users: any[] = [];
+  users: User[] = new Array;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,private router: Router) { }
 
-  ngOnInit() {
-    this.userService.getUsers()
-      .subscribe(users => {
-        this.users = users;
-      });
+  ngOnInit(): void {
+    this.users = this.userService.getUsers();
   }
 
-  deleteUser(id: number) {
-    this.userService.deleteUser(id)
-      .subscribe(() => {
-        // Refresh users after deletion
-        this.users = this.users.filter(user => user.id !== id);
-      }, error => {
-        console.error('Error deleting user:', error);
-      });
+  deleteUser(id: number): void {
+    this.userService.deleteUser(id);
+    this.users = this.userService.getUsers();
   }
-
-  editUser(id: number) {
-    // Implement edit functionality
+  goToAddUser():void{
+    this.router.navigate(['/add-user']);
   }
 }
 

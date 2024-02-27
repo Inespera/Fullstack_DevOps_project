@@ -1,4 +1,9 @@
-<!-- type-user-list.component.html -->
+<div class="header">
+  Type user List
+</div>
+<div class="container">
+  <button (click)="goToAddUserType()" class="usetbtn">Add a type user</button>
+</div>
 <table class="table">
     <thead>
       <tr>
@@ -12,10 +17,9 @@
         <td>{{ userType.id }}</td>
         <td>{{ userType.type }}</td>
         <td>
-          <button class="btn btn-danger" (click)="deleteUserType(userType.id)">Delete</button>
-          <button class="btn btn-primary" (click)="editUserType(userType.id)">Edit</button>
+          <button class="btn-edit" (click)="editUserType(userType.id)">Edit</button>
+          <button class="btn-delete" (click)="deleteUserType(userType.id)">Delete</button>
         </td>
       </tr>
     </tbody>
   </table>
-  

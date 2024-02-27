@@ -1,0 +1,16 @@
+.header{
+    height: 15%;
+    background-color: #80a9beff;
+}
+
+button{
+    background-color: #80a9beff;
+    border: none;
+    border-top: 3px solid #890e54ff;
+    text-align: center;
+    font-size: 18px;
+    outline:none;
+    padding: 15px;
+    cursor: pointer;
+    margin-right: 20px;
+}
